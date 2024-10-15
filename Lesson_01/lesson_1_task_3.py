@@ -1,5 +1,5 @@
 first_name = "Nina"
 last_name = "Polevina"
-input = last_name + first_name
+input = first_name + last_name
 
 print("Меня зовут: " + input)
