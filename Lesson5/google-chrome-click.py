@@ -27,5 +27,10 @@ for button in buttons:
     button = button.find_element(By.XPATH, "//button[text()='Delete']").text
     print(button)
 
+# еще вариант
+# print(f"Количество кнопок Delete: {len(buttons)}")
+# for button in buttons:
+   # print(button.text)
+
 sleep(5)
 driver.quit()
