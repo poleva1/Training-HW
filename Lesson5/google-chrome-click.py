@@ -14,6 +14,10 @@ search_box = driver.find_element(By.XPATH, "//button[text()='Add Element']").cli
 search_box = driver.find_element(By.XPATH, "//button[text()='Add Element']").click()
 search_box = driver.find_element(By.XPATH, "//button[text()='Add Element']").click()
 
+# еще вариант
+# for _ in range(5):
+    # driver.find_element(By.XPATH, "//button[text()='Add Element']").click()
+
 # Соберите со страницы список кнопок Delete
 buttons = driver.find_elements(By.XPATH, "//button[text()='Delete']")
 print(len(buttons))
