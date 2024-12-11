@@ -11,7 +11,7 @@ class SqlTable:
         self.db = create_engine(connection_string)
 
     def get_places(self):
-        return self.db.execute(self.scripts("select")).fetchall()
+        return self.db.execute(self.scripts["select"]).fetchall()
 
     def get_place_by_id(self, id):
-        return self.db.execute(self.scripts("select by id"), select_id=id).fetchall()
+        return self.db.execute(self.scripts["select by id"], {'select_id': id}).fetchall()
