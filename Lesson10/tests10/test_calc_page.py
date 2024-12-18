@@ -6,7 +6,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from Lesson10.pages10.calc_page import CalcPage
 
-# Фикстура для создания WebDriver
 @pytest.fixture
 def driver():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
@@ -28,9 +27,10 @@ def test_calc_page(driver):
 
     with allure.step("Произвести вычисления"):
         calc_page.calc_sum()
+        calc_page.wait_result(45, 15)
 
     with allure.step("Получить результат вычислений '15'"):
-        result = calc_page.get_result
+        result = calc_page.result_text()
 
-    # with allure.step("Проверить, что результат=15"):
-    #     assert result == 15
+    with allure.step("Проверить, что результат=15"):
+        assert result == "15"

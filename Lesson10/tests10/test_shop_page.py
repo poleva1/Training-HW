@@ -23,7 +23,7 @@ def test_shop(driver):
         shop_page.open("https://www.saucedemo.com/")
 
     with allure.step("Авторизоваться на странице"):
-        shop_page.get_authorisation("standard_user", "secret_sauce")
+        shop_page.get_authorisation()
 
     with allure.step("Добавить товары в корзину"):
         shop_page.add_to_cart()
@@ -34,9 +34,8 @@ def test_shop(driver):
     with allure.step("Нажать Checkout"):
         shop_page.click_checkout()
 
-    with allure.step("Заполнить форму своими данными {first_name} {last_name} {post_code}. Нажать кнопку Continue"):
-        shop_page.add_checkout_data("Имя", "Фамилия", "123456")
+    with allure.step("Заполнить форму своими данными. Нажать кнопку Continue"):
+        shop_page.add_checkout_data()
 
-    with allure.step("Получить итоговую стоимость заказа {total}"):
-        shop_page.get_total()
-        assert total == "58,29"
+    with allure.step("Получить итоговую стоимость заказа"):
+        assert shop_page.get_total() == "Total: $58.29"

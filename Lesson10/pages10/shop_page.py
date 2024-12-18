@@ -11,9 +11,9 @@ class ShopPage:
     def open(self, url: str) -> None:
         self.driver.get(url)
 
-    @allure.step("Авторизация на странице {username} {password}")
-    def get_authorisation(self, username: str, password: str) -> None:
-        self.driver.find_element(By.ID, "username").send_keys("standard_user")
+    @allure.step("Авторизация на странице")
+    def get_authorisation(self) -> None:
+        self.driver.find_element(By.ID, "user-name").send_keys("standard_user")
         self.driver.find_element(By.ID, "password").send_keys("secret_sauce")
         self.driver.find_element(By.ID, "login-button").click()
 
@@ -33,17 +33,17 @@ class ShopPage:
     def click_checkout(self) -> None:
         self.driver.find_element(By.ID, "checkout").click()
 
-    @allure.step("Заполнение формы своими данными {first_name} {last_name} {post_code}. Нажмите кнопку Continue")
-    def add_checkout_data(self, first_name: str, last_name: str, postal_code: str) -> None:
+    @allure.step("Заполнение формы своими данными. Нажмите кнопку Continue")
+    def add_checkout_data(self) -> None:
         self.driver.find_element(By.ID, "first-name").send_keys("Имя")
         self.driver.find_element(By.ID, "last-name").send_keys("Фамилия")
         self.driver.find_element(By.ID, "postal-code").send_keys("123456")
         self.driver.find_element(By.ID, "continue").click()
 
-    @allure.step("Получение итоговой стоимости заказа {total}")
+    @allure.step("Получение итоговой стоимости заказа")
     def get_total(self) -> set:
         total = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "summary_total_label"))
         )
         total = self.driver.find_element(By.CLASS_NAME, "summary_total_label").text
-        return {total}
+        return total
